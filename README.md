@@ -2,6 +2,10 @@
 
 A bilingual-friendly (Traditional Chinese interface) CRISP-DM multiple linear regression laboratory. Upload UTF-8 CSV files or use a public HTTPS CSV URL, choose any numerical target and input features, then train and compare **LinearRegression, Ridge, Lasso, ElasticNet, BayesianRidge** with Scikit-learn.
 
+## Live Site
+
+[https://yeeliyay.github.io/Regression-Explorer/](https://yeeliyay.github.io/Regression-Explorer/)
+
 ## Features
 
 - CSV URL or upload; configurable numerical target / numeric and categorical input columns.
