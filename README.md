@@ -16,6 +16,50 @@ A bilingual-friendly (Traditional Chinese interface) CRISP-DM multiple linear re
 - Best-per-feature-count results, all tested subsets, test predictions and JSON download.
 - No raw datasets or generated user results are persisted by the API.
 
+## Dataset Input Requirements and Limitations
+
+Regression Explorer supports importing datasets through **CSV file uploads** or **public HTTPS CSV URLs**. To ensure successful model training and evaluation, please follow the requirements below.
+
+### 1. Dataset Requirements
+
+| Item | Limitation |
+|---|---|
+| File Format | CSV (`.csv`) |
+| Maximum File Size | 3 MB |
+| Number of Rows | 12–5,000 |
+| Number of Columns | 2–80 |
+| Maximum Selected Features | 12 |
+| Maximum Features per Subset | 5 |
+| Maximum Feature Combinations | 400 |
+| Maximum Categories per Categorical Feature | 25 |
+| Test Size | 0.1–0.4 (10%–40%) |
+| Cross-Validation | Up to 5-Fold |
+
+### 2. Important Notes
+
+- **Target Variable:** The target must be numerical because the platform supports regression tasks rather than classification.
+- **Feature Selection:** Users can select numerical and categorical features. Categorical variables are automatically processed using One-Hot Encoding.
+- **Missing Values:** Datasets should contain valid and reasonably complete data. Avoid columns with excessive missing values.
+- **CSV URL:** The URL must be publicly accessible through HTTPS and directly return CSV data. GitHub `raw.githubusercontent.com` links are supported.
+- **Feature Combinations:** Exhaustive Feature Selection evaluates different feature subsets. The number of combinations increases rapidly as more features are selected.
+- **Model Evaluation:** The dataset is divided into training and testing sets. Cross-validation is performed on the training data for feature selection and hyperparameter tuning.
+- **Performance:** Large datasets or complex feature combinations may result in longer training times. Performance is also affected by the available resources of the FastAPI hosting service.
+
+### 3. Example Dataset
+
+**50 Startups Dataset**
+
+[Download Sample CSV](https://raw.githubusercontent.com/Avik-Jain/100-Days-Of-ML-Code/master/datasets/50_Startups.csv)
+
+Recommended configuration:
+
+- Target Variable: `Profit`
+- Input Features: `R&D Spend`, `Administration`, `Marketing Spend`, `State`
+- Test Size: `0.2`
+- Maximum Features: `4`
+
+**Note:** The platform is designed for small- to medium-sized tabular regression datasets. Datasets exceeding the specified limits may be rejected to prevent excessive computational resource usage.
+
 ## Project layout
 
 ```text
